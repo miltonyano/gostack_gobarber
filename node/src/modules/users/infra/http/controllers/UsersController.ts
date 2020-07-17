@@ -16,6 +16,7 @@ export default class UsersController {
       password,
     });
 
+    // check if this line can be removed after the class-transformer implementation
     delete user.password;
 
     return response.json(classToClass(user));
