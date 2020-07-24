@@ -18,11 +18,12 @@ interface IUploadConfig {
 }
 
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
+const uploadsFolder = path.resolve(__dirname, '..', '..', 'files');
 
 export default {
   driver: process.env.STORAGE_DRIVER,
   tmpFolder,
-  uploadsFolder: path.resolve(tmpFolder, 'uploads'),
+  uploadsFolder,
 
   multer: {
     storage: multer.diskStorage({
