@@ -5,6 +5,7 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import User from '@modules/users/infra/typeorm/entities/Users';
+import { classToClass } from 'class-transformer';
 
 interface IRequest {
   user_id: string;
@@ -30,9 +31,10 @@ class ListProvidersService {
         except_user_id: user_id,
       });
 
-      console.log('DB Query');
-
-      await this.cacheProvider.save(`providers-list:${user_id}`, providers);
+      await this.cacheProvider.save(
+        `providers-list:${user_id}`,
+        classToClass(providers),
+      );
     }
 
     return providers;
